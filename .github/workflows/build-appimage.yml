@@ -4,16 +4,18 @@ on:
   workflow_dispatch:
     inputs:
       ref:
-        description: "Git ref: tag/branch/commit (e.g. v7.71.0 or main)"
+        description: "Git ref: tag/branch/commit (e.g. v7.71.0-alpha.1 or main)"
         required: false
         default: "main"
 
 jobs:
   build-linux-appimage:
     runs-on: ubuntu-22.04
+    env:
+      SIGNAL_ENV: production
 
     steps:
-      - name: Checkout (with LFS)
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -25,17 +27,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq libarchive-tools rpm fakeroot
 
-      - name: Setup Node (from .nvmrc)
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
 
-      - name: Enable Corepack & pin pnpm from package.json
+      - name: Enable Corepack and pnpm
         run: |
           corepack enable
-          # вытащим версию pnpm из package.json: поле "packageManager": "pnpm@X.Y.Z"
           PNPM_VER=$(jq -r '.packageManager|capture("pnpm@(?<v>[^+]+)").v' package.json)
-          echo "Using pnpm@$PNPM_VER"
           corepack use "pnpm@$PNPM_VER"
           pnpm --version
 
@@ -56,7 +56,7 @@ jobs:
           git lfs install
           pnpm install --frozen-lockfile
 
-      - name: Build sticker-creator (optional)
+      - name: Build sticker-creator
         run: |
           if [ -f sticker-creator/package.json ]; then
             pnpm --prefix ./sticker-creator/ install --frozen-lockfile
@@ -66,13 +66,13 @@ jobs:
       - name: Generate sources
         run: pnpm run generate
 
-      - name: Build AppImage (electron-builder, no publish)
+      - name: Build AppImage
         run: |
           pnpm exec electron-builder \
             --linux AppImage \
             --config.linux.target=AppImage \
             --publish=never \
-            --config.extraMetadata.environment=production \
+            --config.extraMetadata.environment=$SIGNAL_ENV \
             --config.directories.output=release
 
       - name: List artifacts
