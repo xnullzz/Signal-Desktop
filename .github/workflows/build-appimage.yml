@@ -3,59 +3,63 @@ name: Build Signal AppImage
 on:
   workflow_dispatch:
     inputs:
-      tag:
-        description: "Git tag/branch (e.g., v7.68.0 or main)"
+      ref:
+        description: "Git ref: tag/branch/commit (e.g. v7.68.0 or main)"
         required: false
         default: "main"
 
 jobs:
   build-linux-appimage:
     runs-on: ubuntu-22.04
+
     steps:
-      - name: Checkout
+      - name: Checkout (with LFS)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           lfs: true
 
-      - name: Setup Node from .nvmrc
+      - name: Use Node from .nvmrc
         id: node
         run: echo "NODE_VERSION=$(cat .nvmrc)" >> $GITHUB_OUTPUT
 
-      - name: Use Node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: ${{ steps.node.outputs.NODE_VERSION }}
 
-      - name: Enable Corepack & pin pnpm
+      - name: Enable Corepack & honor packageManager
         run: |
           corepack enable
-          corepack prepare pnpm@10.6.4 --activate
+        shell: bash
 
-      - name: System deps
+      - name: System deps for AppImage build
         run: |
           sudo apt-get update
           sudo apt-get install -y libarchive-tools rpm jq fakeroot
 
-      - name: Switch ref
-        if: ${{ github.event.inputs.tag != '' }}
+      - name: Switch to ref
+        if: ${{ github.event.inputs.ref != '' }}
         run: |
           git fetch --all --tags
-          git checkout "${{ github.event.inputs.tag }}"
+          git checkout "${{ github.event.inputs.ref }}"
 
-      - name: Install deps
+      - name: Install deps (pnpm)
         run: |
           git lfs install
-          pnpm install
+          pnpm install --frozen-lockfile
 
-      # (не всегда нужно, но совпадает с Arch PKGBUILD)
-      - name: Build sticker-creator
-        run: pnpm --prefix ./sticker-creator/ run build
+      - name: Build sticker-creator (optional)
+        run: |
+          if [ -f sticker-creator/package.json ]; then
+            pnpm --prefix ./sticker-creator/ install --frozen-lockfile
+            pnpm --prefix ./sticker-creator/ run build
+          fi
 
       - name: Generate
         run: pnpm run generate
 
-      - name: Build AppImage
+      - name: Build AppImage (electron-builder)
         env:
           CI: "true"
         run: pnpm run build -- --linux AppImage
@@ -66,3 +70,4 @@ jobs:
           name: Signal-AppImage
           path: release/*.AppImage
           if-no-files-found: error
+          retention-days: 14
