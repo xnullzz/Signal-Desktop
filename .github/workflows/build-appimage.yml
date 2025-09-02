@@ -1,0 +1,68 @@
+name: Build Signal AppImage
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Git tag/branch (e.g., v7.68.0 or main)"
+        required: false
+        default: "main"
+
+jobs:
+  build-linux-appimage:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Use Node from .nvmrc
+        id: nvmrc
+        run: echo "NODE_VERSION=$(cat .nvmrc)" >> $GITHUB_OUTPUT
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ steps.nvmrc.outputs.NODE_VERSION }}
+          cache: yarn
+
+      - name: System deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libarchive-tools rpm jq fakeroot
+
+      - name: Switch ref
+        if: ${{ github.event.inputs.tag != '' }}
+        run: |
+          git fetch --all --tags
+          git checkout "${{ github.event.inputs.tag }}"
+
+      - name: Enable Corepack/Yarn
+        run: |
+          corepack enable
+          corepack prepare yarn@stable --activate
+
+      - name: Install deps
+        run: |
+          git lfs install
+          yarn install --frozen-lockfile
+
+      - name: Generate
+        run: yarn generate
+
+      - name: Build AppImage
+        env:
+          CI: "true"
+        run: |
+          # electron-builder target для AppImage
+          yarn build --linux AppImage
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Signal-AppImage
+          path: |
+            release/*.AppImage
+          if-no-files-found: error
