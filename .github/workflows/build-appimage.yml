@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       ref:
-        description: "Git ref: tag/branch/commit (e.g. v7.68.0 or main)"
+        description: "Git ref: tag/branch/commit (e.g. v7.71.0 or main)"
         required: false
         default: "main"
 
@@ -18,33 +18,40 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
+          ref: ${{ github.event.inputs.ref }}
 
-      - name: Use Node from .nvmrc
-        id: node
-        run: echo "NODE_VERSION=$(cat .nvmrc)" >> $GITHUB_OUTPUT
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ steps.node.outputs.NODE_VERSION }}
-
-      - name: Enable Corepack & honor packageManager
-        run: |
-          corepack enable
-        shell: bash
-
-      - name: System deps for AppImage build
+      - name: Install base tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y libarchive-tools rpm jq fakeroot
+          sudo apt-get install -y jq libarchive-tools rpm fakeroot
 
-      - name: Switch to ref
-        if: ${{ github.event.inputs.ref != '' }}
+      - name: Setup Node (from .nvmrc)
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Enable Corepack & pin pnpm from package.json
         run: |
-          git fetch --all --tags
-          git checkout "${{ github.event.inputs.ref }}"
+          corepack enable
+          # вытащим версию pnpm из package.json: поле "packageManager": "pnpm@X.Y.Z"
+          PNPM_VER=$(jq -r '.packageManager|capture("pnpm@(?<v>[^+]+)").v' package.json)
+          echo "Using pnpm@$PNPM_VER"
+          corepack use "pnpm@$PNPM_VER"
+          pnpm --version
 
-      - name: Install deps (pnpm)
+      - name: Get pnpm store path
+        id: pnpm-store
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-store.outputs.STORE_PATH }}
+          key: pnpm-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            pnpm-${{ runner.os }}-
+
+      - name: Install deps
         run: |
           git lfs install
           pnpm install --frozen-lockfile
@@ -56,15 +63,22 @@ jobs:
             pnpm --prefix ./sticker-creator/ run build
           fi
 
-      - name: Generate
+      - name: Generate sources
         run: pnpm run generate
 
-      - name: Build AppImage (electron-builder)
-        env:
-          CI: "true"
-        run: pnpm run build -- --linux AppImage
+      - name: Build AppImage (electron-builder, no publish)
+        run: |
+          pnpm exec electron-builder \
+            --linux AppImage \
+            --config.linux.target=AppImage \
+            --publish=never \
+            --config.extraMetadata.environment=production \
+            --config.directories.output=release
 
-      - name: Upload artifact
+      - name: List artifacts
+        run: ls -l release || true
+
+      - name: Upload AppImage
         uses: actions/upload-artifact@v4
         with:
           name: Signal-AppImage
