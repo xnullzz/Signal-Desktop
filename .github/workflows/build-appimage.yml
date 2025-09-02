@@ -18,15 +18,19 @@ jobs:
           fetch-depth: 0
           lfs: true
 
-      - name: Use Node from .nvmrc
-        id: nvmrc
+      - name: Setup Node from .nvmrc
+        id: node
         run: echo "NODE_VERSION=$(cat .nvmrc)" >> $GITHUB_OUTPUT
 
-      - name: Setup Node
+      - name: Use Node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ steps.nvmrc.outputs.NODE_VERSION }}
-          cache: yarn
+          node-version: ${{ steps.node.outputs.NODE_VERSION }}
+
+      - name: Enable Corepack & pin pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@10.6.4 --activate
 
       - name: System deps
         run: |
@@ -39,30 +43,26 @@ jobs:
           git fetch --all --tags
           git checkout "${{ github.event.inputs.tag }}"
 
-      - name: Enable Corepack/Yarn
-        run: |
-          corepack enable
-          corepack prepare yarn@stable --activate
-
       - name: Install deps
         run: |
           git lfs install
-          yarn install --frozen-lockfile
+          pnpm install
+
+      # (не всегда нужно, но совпадает с Arch PKGBUILD)
+      - name: Build sticker-creator
+        run: pnpm --prefix ./sticker-creator/ run build
 
       - name: Generate
-        run: yarn generate
+        run: pnpm run generate
 
       - name: Build AppImage
         env:
           CI: "true"
-        run: |
-          # electron-builder target для AppImage
-          yarn build --linux AppImage
+        run: pnpm run build -- --linux AppImage
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: Signal-AppImage
-          path: |
-            release/*.AppImage
+          path: release/*.AppImage
           if-no-files-found: error
