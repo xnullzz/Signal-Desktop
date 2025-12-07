@@ -104,6 +104,15 @@
   "icu:databaseError__safeStorageBackendChangeWithPreviousFlag": {
     "messageformat": "OS एन्क्रिप्शन कीरिंग बॅकएण्ड हे {previousBackend} पासून {currentBackend} मध्ये बदलल्याने डेटाबेस एन्क्रिप्शन की ॲक्सेस करण्यास अक्षम आहे. हे GNOME आणि KDE दरम्यान बदल होण्यासारख्या डेस्कटॉप एन्व्हायरनमेंटमध्ये बदल झाल्यास घडून येते.\n\nकृपया मागील डेस्कटॉप एन्व्हायरनमेंट मध्ये स्वीच व्हा किंवा कमांड लाइन फ्लॅग--password-store=\"{previousBackendFlag}\" सह signal रन करण्याचा प्रयत्न करा"
   },
+  "icu:systemEncryptionError": {
+    "messageformat": "System encryption error"
+  },
+  "icu:systemEncryptionError__linuxSafeStorageDecryptionError": {
+    "messageformat": "Unable to decrypt the database encryption key using the OS encryption keyring. This can occur in certain containerized environments such as Flatpak.\n\nWe recommend quitting and checking your OS encryption backend such as gnome-libsecret or kwallet, then trying again.\n\nYou may choose to continue anyway, however the database key will be stored in plaintext on the filesystem and other apps may be able to access it."
+  },
+  "icu:systemEncryptionError__continueWithPlaintextKey": {
+    "messageformat": "Continue with plaintext key"
+  },
   "icu:mainMenuFile": {
     "messageformat": "फाईल"
   },
@@ -233,6 +242,12 @@
   "icu:archivedConversations": {
     "messageformat": "आर्काईव्ह केलेले चॅट"
   },
+  "icu:LeftPane__MoreActionsMenu__AddChatFolder": {
+    "messageformat": "चॅट फोल्डर समाविष्ट करा"
+  },
+  "icu:LeftPane__MoreActionsMenu__FolderSettings": {
+    "messageformat": "फोल्डर सेटिंग्ज"
+  },
   "icu:LeftPane--pinned": {
     "messageformat": "पिन केलेला"
   },
@@ -271,6 +286,45 @@
   },
   "icu:LeftPaneFindByHelper__description--findByUsername": {
     "messageformat": "वापरकर्तानावानंतर एक पूर्णविराम आणि त्याच्या संख्याचा सेट प्रविष्ट करा."
+  },
+  "icu:LeftPane__EmptyView--WithSelectedChatFolder": {
+    "messageformat": "दाखवण्यासाठी कोणतीही चॅट्स नाहीत"
+  },
+  "icu:LeftPane__EmptyView--WithSelectedChatFolder__FolderSettings": {
+    "messageformat": "फोल्डर सेटिंग्ज"
+  },
+  "icu:LeftPaneChatFolders__ItemLabel--All--Short": {
+    "messageformat": "सर्व"
+  },
+  "icu:LeftPaneChatFolders__ItemLabel--All": {
+    "messageformat": "सर्व चॅट्स"
+  },
+  "icu:LeftPaneChatFolders__ItemUnreadBadge__MaxCount": {
+    "messageformat": "{maxCount,number}+"
+  },
+  "icu:LeftPaneChatFolders__Item__ContextMenu__MarkAllRead": {
+    "messageformat": "सर्व वाचले म्हणून चिन्हांकित करा"
+  },
+  "icu:LeftPaneChatFolders__Item__ContextMenu__MuteNotifications": {
+    "messageformat": "सूचना मूक करा"
+  },
+  "icu:LeftPaneChatFolders__Item__ContextMenu__MuteNotifications__UnmuteAll": {
+    "messageformat": "सर्व अनम्युट करा"
+  },
+  "icu:LeftPaneChatFolders__Item__ContextMenu__UnmuteAll": {
+    "messageformat": "सर्व अनम्युट करा"
+  },
+  "icu:LeftPaneChatFolders__Item__ContextMenu__EditFolder": {
+    "messageformat": "फोल्डर संपादित करा"
+  },
+  "icu:LeftPane__ConversationListItem__ContextMenu__ChatFolderToggleChatsItem": {
+    "messageformat": "फोल्डरमध्ये जोडा"
+  },
+  "icu:LeftPane__ConversationListItem__ContextMenu__ChatFolderToggleChatsMenu__CreateFolderItem": {
+    "messageformat": "फोल्डर तयार करा"
+  },
+  "icu:LeftPane__ConversationListItem__ContextMenu__ChatFolderRemoveChatItem": {
+    "messageformat": "फोल्डरमधून काढून टाका"
   },
   "icu:CountryCodeSelect__placeholder": {
     "messageformat": "देश कोड"
@@ -322,6 +376,9 @@
   },
   "icu:markUnread": {
     "messageformat": "वाचले नाही अशी खुण करा"
+  },
+  "icu:markRead": {
+    "messageformat": "वाचले असे चिन्हांकित करा"
   },
   "icu:ConversationHeader__menu__selectMessages": {
     "messageformat": "संदेश निवडा"
@@ -607,6 +664,15 @@
   },
   "icu:Toast--ReceiptSaveFailed": {
     "messageformat": "पावती जतन करण्यात त्रुटी उद्भवली. कृपया पुन्हा प्रयत्न करा."
+  },
+  "icu:Toast--ChatFolderAddedChat": {
+    "messageformat": "\"{chatFolderName}\" मध्ये जोडले"
+  },
+  "icu:Toast--ChatFolderRemovedChat": {
+    "messageformat": "\"{chatFolderName}\" मधून काढले"
+  },
+  "icu:Toast--ChatFolderCreated": {
+    "messageformat": "{chatFolderName} फोल्डर जोडला"
   },
   "icu:cannotSelectPhotosAndVideosAlongWithFiles": {
     "messageformat": "आपण फाईल्ससह फोटो आणि व्हिडिओ निवडू शकत नाही."
@@ -1031,14 +1097,95 @@
   "icu:MessageContextMenu__info": {
     "messageformat": "माहिती"
   },
+  "icu:MessageContextMenu__PinMessage": {
+    "messageformat": "Pin message"
+  },
+  "icu:Poll__end-poll": {
+    "messageformat": "पोल समाप्त करा"
+  },
+  "icu:PollMessage--SelectOne": {
+    "messageformat": "पोल · एक निवडा"
+  },
+  "icu:PollMessage--SelectMultiple": {
+    "messageformat": "पोल · एक किंवा अधिक निवडा"
+  },
+  "icu:PollMessage--FinalResults": {
+    "messageformat": "पोल · अंतिम निकाल"
+  },
+  "icu:PollMessage__ViewVotesButton": {
+    "messageformat": "मते पहा"
+  },
+  "icu:PollMessage--YouVoted": {
+    "messageformat": "तुम्ही मत दिलेत"
+  },
+  "icu:PollTerminate--you": {
+    "messageformat": "तुम्ही पोल समाप्त केलात : {poll}"
+  },
+  "icu:PollTerminate--other": {
+    "messageformat": "{name}ने पोल समाप्त केला : {poll}"
+  },
+  "icu:PollTerminate__view-poll": {
+    "messageformat": "पोल पाहा"
+  },
+  "icu:PollVotesModal__title": {
+    "messageformat": "पोल तपशील"
+  },
+  "icu:PollVotesModal__questionLabel": {
+    "messageformat": "प्रश्न"
+  },
+  "icu:PollVotesModal__voteCount": {
+    "messageformat": "{count, plural, one {{count,number} मत} other {{count,number} मते}}"
+  },
+  "icu:PollVotesModal__noVotes": {
+    "messageformat": "शून्य मते"
+  },
+  "icu:PollVotesModal__winningOption": {
+    "messageformat": "विजयी"
+  },
+  "icu:Toast--PinnedMessageNotFound": {
+    "messageformat": "पिन केलेला संदेश सापडला नाही"
+  },
+  "icu:Toast--PollNotFound": {
+    "messageformat": "पोल सापडला नाही"
+  },
+  "icu:PollCreateModal__title": {
+    "messageformat": "नवीन पोल"
+  },
+  "icu:PollCreateModal__questionLabel": {
+    "messageformat": "प्रश्न"
+  },
+  "icu:PollCreateModal__questionPlaceholder": {
+    "messageformat": "एक प्रश्न विचारा"
+  },
+  "icu:PollCreateModal__optionsLabel": {
+    "messageformat": "पर्याय"
+  },
+  "icu:PollCreateModal__optionPlaceholder": {
+    "messageformat": "पर्याय {number}"
+  },
+  "icu:PollCreateModal__allowMultipleVotes": {
+    "messageformat": "अनेक मते देण्यास परवानगी द्या"
+  },
+  "icu:PollCreateModal__sendButton": {
+    "messageformat": "पाठवा"
+  },
+  "icu:PollCreateModal__Error--RequiresQuestion": {
+    "messageformat": "पोलसाठी प्रश्न आवश्यक आहे"
+  },
+  "icu:PollCreateModal__Error--RequiresTwoOptions": {
+    "messageformat": "पोलसाठी किमान 2 पर्याय आवश्यक आहेत"
+  },
+  "icu:PollCreateModal__Error--QuestionTooLong": {
+    "messageformat": "प्रश्न फार मोठा आहे"
+  },
+  "icu:PollCreateModal__Error--OptionTooLong": {
+    "messageformat": "पर्याय फार मोठा आहे"
+  },
   "icu:deleteConversation": {
     "messageformat": "हटवा"
   },
   "icu:ConversationHeader__DeleteConversationConfirmation__title": {
     "messageformat": "चॅट हटवायचे?"
-  },
-  "icu:ConversationHeader__DeleteConversationConfirmation__description": {
-    "messageformat": "या चॅट्समधील सर्व संदेश या डिव्हाइस वरून हटवले जातील."
   },
   "icu:ConversationHeader__DeleteConversationConfirmation__description-with-sync": {
     "messageformat": "या चॅट्स मधील सर्व संदेश आपल्या सर्व डिव्हाइसेस वरून हटवण्यात येतील."
@@ -1057,6 +1204,60 @@
   },
   "icu:ConversationHeader__CannotLeaveGroupBecauseYouAreLastAdminAlert__description": {
     "messageformat": "आपण सोडण्यापूर्वी, आपण या गटासाठी कमीत कमी एक नवीन प्रशासक निवडणे आवश्यक आहे."
+  },
+  "icu:PinnedMessageNotification__Message--You": {
+    "messageformat": "You pinned a message"
+  },
+  "icu:PinnedMessageNotification__Message--SomeoneElse": {
+    "messageformat": "{sender} pinned a message"
+  },
+  "icu:PinnedMessageNotification__Button": {
+    "messageformat": "Go to message"
+  },
+  "icu:PinMessageDialog__Title": {
+    "messageformat": "Pin message for..."
+  },
+  "icu:PinMessageDialog__Close": {
+    "messageformat": "Close"
+  },
+  "icu:PinMessageDialog__Option--TIME_24_HOURS": {
+    "messageformat": "24 hours"
+  },
+  "icu:PinMessageDialog__Option--TIME_7_DAYS": {
+    "messageformat": "7 days"
+  },
+  "icu:PinMessageDialog__Option--TIME_30_DAYS": {
+    "messageformat": "30 days"
+  },
+  "icu:PinMessageDialog__Option--FOREVER": {
+    "messageformat": "Forever"
+  },
+  "icu:PinMessageDialog__Cancel": {
+    "messageformat": "Cancel"
+  },
+  "icu:PinMessageDialog__Pin": {
+    "messageformat": "Pin"
+  },
+  "icu:PinnedMessagesBar__AccessibilityLabel": {
+    "messageformat": "{pinsCount, plural, one {Pinned message} other {Pinned messages}}"
+  },
+  "icu:PinnedMessagesBar__Tab__AccessibilityLabel": {
+    "messageformat": "Go to pin {pinNumber,number}"
+  },
+  "icu:PinnedMessagesBar__GoToMessageClickableArea__AccessibilityLabel": {
+    "messageformat": "Go to message"
+  },
+  "icu:PinnedMessagesBar__ActionsMenu__Button__AccessibilityLabel": {
+    "messageformat": "More actions"
+  },
+  "icu:PinnedMessagesBar__ActionsMenu__UnpinMessage": {
+    "messageformat": "Unpin message"
+  },
+  "icu:PinnedMessagesBar__ActionsMenu__GoToMessage": {
+    "messageformat": "Go to message"
+  },
+  "icu:PinnedMessagesBar__ActionsMenu__SeeAllMessages": {
+    "messageformat": "See all messages"
   },
   "icu:sessionEnded": {
     "messageformat": "सुरक्षित सत्र रीसेट केले गेले"
@@ -1175,36 +1376,6 @@
   "icu:attachmentNotAvailable__tapToViewCannotDownload": {
     "messageformat": "एकदा-बघा मिडीया डाऊनलोड करता येत नाही"
   },
-  "icu:AttachmentNotAvailableModal__title--file": {
-    "messageformat": "फाईल उपलब्ध नाही"
-  },
-  "icu:AttachmentNotAvailableModal__title--long-text": {
-    "messageformat": "पूर्ण संदेश उपलब्ध नाही"
-  },
-  "icu:AttachmentNotAvailableModal__title--media": {
-    "messageformat": "मिडीया उपलब्ध नाही"
-  },
-  "icu:AttachmentNotAvailableModal__title--sticker": {
-    "messageformat": "स्टिकर उपलब्ध नाही"
-  },
-  "icu:AttachmentNotAvailableModal__title--voice-message": {
-    "messageformat": "व्हॉईस संदेश उपलब्ध नाही"
-  },
-  "icu:AttachmentNotAvailableModal__body--file": {
-    "messageformat": "हा डिव्हाईस लिंक केला तेव्हा ही फाईल तुमच्या फोनवर हस्तांतरित झाली नव्हती. डिव्हाईस सिंक करतेवेळी ४५ दिवसांपेक्षा जुना मीडिया आणि जुन्या फाइल्स स्थलांतरित झाल्या नव्हत्या."
-  },
-  "icu:AttachmentNotAvailableModal__body--long-text": {
-    "messageformat": "हा डिव्हाईस लिंक झाला तेव्हा या संदेशातील पूर्ण मजकूर तुमच्या फोनवरून हस्तांंतरित होऊ शकला नाही. डिव्हाईस लिंक करतेवेळी 45 दिवसांपेक्षा जुने टेक्स्ट संदेश सिंक करता येत नाहीत."
-  },
-  "icu:AttachmentNotAvailableModal__body--media": {
-    "messageformat": "हा डिव्हाईस लिंक केला तेव्हा हा मिडीया तुमच्या फोनवर हस्तांतरित झाला नाही. डिव्हाईस लिंक करतेवेळी ४५ दिवसांपेक्षा जुना मिडीया सिंक करता येत नाही."
-  },
-  "icu:AttachmentNotAvailableModal__body--sticker": {
-    "messageformat": "हा डिव्हाईस लिंक केला तेव्हा हा स्टिकर तुमच्या फोनवरून हस्तांतरण झाला नव्हता. डिव्हाईस सिंक करतेवेळी ४५ दिवसांपेक्षा जुना मिडीया आणि जुन्या फाईल्स सिंक करता येत नाहीत."
-  },
-  "icu:AttachmentNotAvailableModal__body--voice-message": {
-    "messageformat": "हा डिव्हाईस लिंक केला तेव्हा हा व्हॉईस संदेश तुमच्या फोनवरून हस्तांतरण झाला नव्हता. डिव्हाईस सिंक करतेवेळी ४५ दिवसांपेक्षा जुना मिडीया आणि जुन्या फाईल्स सिंक करता येत नाहीत."
-  },
   "icu:TapToViewNotAvailableModal__body--expired": {
     "messageformat": "हा एकदा-बघा मिडीया आता डाऊनलोड करण्यासाठी उपलब्ध नाही. {name}ला तो पुन्हा पाठवायला सांगा."
   },
@@ -1292,8 +1463,20 @@
   "icu:Preferences__ChatsPage__ChatFoldersSection__AddChatFolderItem__Title": {
     "messageformat": "एक चॅट फोल्डर समाविष्ट करा"
   },
+  "icu:Preferences__ChatsPage__ChatFoldersSection__AddChatFolderItem__Title--WithChatFolders": {
+    "messageformat": "फोल्डर्स तयार करा किंवा संपादित करा"
+  },
   "icu:Preferences__ChatsPage__ChatFoldersSection__AddChatFolderItem__Description": {
     "messageformat": "आपले चॅट्स फोल्डरमध्ये व्यवस्थित लावा आणि त्यांच्यादरम्यान आपल्या चॅट यादी वर पटकन स्विच करा."
+  },
+  "icu:Preferences__ChatsPage__ChatFoldersSection__AddChatFolderItem__Description--WithChatFolders": {
+    "messageformat": "{chatFoldersCount, plural, one {{chatFoldersCount,number} फोल्डर} other {{chatFoldersCount,number} फोल्डर्स}}"
+  },
+  "icu:Preferences__ChatsPage__ChatFoldersSection__AddChatFolderItem__Button": {
+    "messageformat": "सेट अप"
+  },
+  "icu:Preferences__ChatsPage__ChatFoldersSection__AddChatFolderItem__Button--WithChatFolders": {
+    "messageformat": "व्यवस्थापित करा"
   },
   "icu:Preferences__ChatsPage__ChatFoldersSection__ChatFolderItem__ContextMenu__EditFolder": {
     "messageformat": "फोल्डर संपादित करा"
@@ -1328,14 +1511,14 @@
   "icu:Preferences__ChatFoldersPage__FoldersSection__CreateAFolderButton": {
     "messageformat": "एक फोल्डर तयार करा"
   },
+  "icu:Preferences__ChatFoldersPage__FoldersSection__DragHandle__Label": {
+    "messageformat": "चॅट फोल्डर हलवण्यासाठी ड्रॅग करा"
+  },
   "icu:Preferences__ChatFoldersPage__SuggestedFoldersSection__Title": {
     "messageformat": "सुचवलेले फोल्डर"
   },
   "icu:Preferences__ChatFoldersPage__SuggestedFoldersSection__AddButton": {
     "messageformat": "जोडा"
-  },
-  "icu:Preferences__ChatFoldersPage__SuggestedFoldersSection__AddButton__Toast": {
-    "messageformat": "{chatFolderTitle} फोल्डर जोडला"
   },
   "icu:Preferences__ChatFoldersPage__SuggestedFoldersSection__UnreadFolder__Title": {
     "messageformat": "न वाचलेले"
@@ -1358,6 +1541,9 @@
   "icu:Preferences__EditChatFolderPage__Title": {
     "messageformat": "एक फोल्डर तयार करा"
   },
+  "icu:Preferences__EditChatFolderPage__Title--EditingExistingChatFolder": {
+    "messageformat": "फोल्डर संपादित करा"
+  },
   "icu:Preferences__EditChatFolderPage__FolderNameField__Label": {
     "messageformat": "फोल्डरचे नाव"
   },
@@ -1369,6 +1555,12 @@
   },
   "icu:Preferences__EditChatFolderPage__IncludedChatsSection__Help": {
     "messageformat": "तुम्हाला या फोल्डरमध्ये कोणती चॅट्स पाहायची आहेत ते निवडा"
+  },
+  "icu:Preferences__EditChatFolderPage__IncludedChatsSection__DirectChats": {
+    "messageformat": "1:1 चॅट्स"
+  },
+  "icu:Preferences__EditChatFolderPage__IncludedChatsSection__GroupChats": {
+    "messageformat": "गट चॅट"
   },
   "icu:Preferences__EditChatFolderPage__IncludedChatsSection__AddChatsButton": {
     "messageformat": "चॅट्स समाविष्ट करा"
@@ -1528,6 +1720,12 @@
   },
   "icu:calling__removed-from-call-title": {
     "messageformat": "कॉलमधून काढण्यात आले"
+  },
+  "icu:calling__has-max-devices": {
+    "messageformat": "या कॉलसाठी सहभागी व्यक्तींची कमाल संख्या पोहोचली आहे. नंतर पुन्हा प्रयत्न करा."
+  },
+  "icu:calling__has-max-devices--title": {
+    "messageformat": "कॉल पूर्ण आहे"
   },
   "icu:CallingLobby__CallLinkNotice": {
     "messageformat": "लिंकद्वारे या कॉलमध्ये जोडला जाणारा कोणीही आपले नाव आणि फोटो पाहील."
@@ -1847,6 +2045,9 @@
   "icu:notificationReactionMessage": {
     "messageformat": "{sender} ने {emoji} अशी प्रतिक्रिया {message} वर दिली"
   },
+  "icu:notificationPollVoteMessage": {
+    "messageformat": "{sender}ने \"{pollQuestion}\" पोलमध्ये मत दिले"
+  },
   "icu:sendFailed": {
     "messageformat": "पाठविणे अयशस्वी"
   },
@@ -2063,11 +2264,17 @@
   "icu:Toast--download-failed": {
     "messageformat": "डाऊनलोड झाले नाही"
   },
+  "icu:Toast--unable-download-from-backup-tier": {
+    "messageformat": "बॅकअप मधील अटॅचमेंट डाऊनलोड अयशस्वी ठरले"
+  },
   "icu:ToastManager__CannotEditMessage_24": {
     "messageformat": "आपण हा संदेश पाठवल्यापासून फक्त 24 तासांच्या आत संपादन करणे लागू केले जाऊ शकते."
   },
   "icu:startConversation--username-not-found": {
     "messageformat": "{atUsername} हा Signal वापरकर्ता नाही. खात्री करा की आपण पूर्ण वापरकर्ता नाव प्रविष्ट केले आहे."
+  },
+  "icu:startConversation--username-not-valid": {
+    "messageformat": "{atUsername} हे वैध वापरकर्तानाव नाही. आपण वापरकर्तानावा नंतर त्याच्या अंकांचा संच पूर्णपणे प्रविष्ट केला असल्याची खात्री करा."
   },
   "icu:startConversation--phone-number-not-found": {
     "messageformat": "वापरकर्ता आढळला नाही. \"{phoneNumber}\" हे Signal वापरकर्ता नाहीत."
@@ -2222,6 +2429,12 @@
   "icu:message--getNotificationText--stickers": {
     "messageformat": "स्टिकर संदेश"
   },
+  "icu:message--getNotificationText--poll": {
+    "messageformat": "पोल : {pollQuestion}"
+  },
+  "icu:Poll--preview": {
+    "messageformat": "पोल : {pollQuestion}"
+  },
   "icu:message--getNotificationText--text-with-emoji": {
     "messageformat": "{emoji} {text}"
   },
@@ -2348,101 +2561,11 @@
   "icu:stickers--StickerManager--UninstallWarning": {
     "messageformat": "आपण हा स्टिकर पॅक पुन्हा स्थापित करू शकणार नाहीत कारण आपल्याकडे आता मूळ संदेश नाही."
   },
-  "icu:stickers--StickerManager--Introduction--Image": {
-    "messageformat": "सादर करत आहे स्टिकर: डाकू मांजर"
-  },
-  "icu:stickers--StickerManager--Introduction--Title": {
-    "messageformat": "स्टिकर ची ओळख करून देत आहे"
-  },
-  "icu:stickers--StickerManager--Introduction--Body": {
-    "messageformat": "स्टिकर वापरू शकत असताना शब्द का वापरायचे?"
-  },
-  "icu:stickers--StickerPicker--Open": {
-    "messageformat": "स्टिकर पिकर उघडा"
-  },
-  "icu:stickers--StickerPicker--AddPack": {
-    "messageformat": "एक स्टिकर पॅक जोडा"
-  },
-  "icu:stickers--StickerPicker--NextPage": {
-    "messageformat": "पुढील पृष्ठ"
-  },
-  "icu:stickers--StickerPicker--PrevPage": {
-    "messageformat": "मागील पृष्ठ"
-  },
-  "icu:stickers--StickerPicker--Recents": {
-    "messageformat": "अलीकडील स्टिकर"
-  },
-  "icu:stickers--StickerPicker--DownloadError": {
-    "messageformat": "काही स्टिकर डाऊनलोड केले जाऊ शकले नाहीत."
-  },
-  "icu:stickers--StickerPicker--DownloadPending": {
-    "messageformat": "स्टिकर पॅक स्थापित करत आहे(...)"
-  },
-  "icu:stickers--StickerPicker--Empty": {
-    "messageformat": "कुठलेही स्टिकर आढळले नाही"
-  },
-  "icu:stickers--StickerPicker--Hint": {
-    "messageformat": "आपल्या संदेशामधील नवीन स्टिकर पॅक स्थापना करण्यासाठी उपलब्ध आहेत"
-  },
-  "icu:stickers--StickerPicker--NoPacks": {
-    "messageformat": "कुठलेही स्टिकर पॅक आढळले नाहीत"
-  },
-  "icu:stickers--StickerPicker--NoRecents": {
-    "messageformat": "अलीकडील वापरलेले स्टिकर पॅक येथे दिसतील."
-  },
-  "icu:stickers__StickerPicker__recent": {
-    "messageformat": "अलीकडील"
-  },
-  "icu:stickers__StickerPicker__featured": {
-    "messageformat": "वैशिष्ट्यीकृत"
-  },
-  "icu:stickers__StickerPicker__analog-time": {
-    "messageformat": "अ‍ॅनालॉग वेळ"
-  },
   "icu:stickers--StickerPreview--Title": {
     "messageformat": "स्टिकर पॅक"
   },
   "icu:stickers--StickerPreview--Error": {
     "messageformat": "स्टिकर पॅक उघडण्यात त्रुटी. आपले इंटरनेट कनेक्शन तपासा आणि पुन्हा प्रयत्न करा."
-  },
-  "icu:EmojiPicker--empty": {
-    "messageformat": "कुठलेही ईमोजी आढळले नाही"
-  },
-  "icu:EmojiPicker--search-close": {
-    "messageformat": "इमोजी शोध बंद करा"
-  },
-  "icu:EmojiPicker--search-placeholder": {
-    "messageformat": "ईमोजी शोधा"
-  },
-  "icu:EmojiPicker--skin-tone": {
-    "messageformat": "स्किन टोन{tone}"
-  },
-  "icu:EmojiPicker__button--recents": {
-    "messageformat": "अलीकडील"
-  },
-  "icu:EmojiPicker__button--emoji": {
-    "messageformat": "ईमोजी"
-  },
-  "icu:EmojiPicker__button--animal": {
-    "messageformat": "पशु"
-  },
-  "icu:EmojiPicker__button--food": {
-    "messageformat": "अन्न"
-  },
-  "icu:EmojiPicker__button--activity": {
-    "messageformat": "क्रिया"
-  },
-  "icu:EmojiPicker__button--travel": {
-    "messageformat": "प्रवास"
-  },
-  "icu:EmojiPicker__button--object": {
-    "messageformat": "वस्तू"
-  },
-  "icu:EmojiPicker__button--symbol": {
-    "messageformat": "चिन्ह"
-  },
-  "icu:EmojiPicker__button--flag": {
-    "messageformat": "झेंडा"
   },
   "icu:FunPicker__Tab--Emojis": {
     "messageformat": "ईमोजी"
@@ -2551,6 +2674,9 @@
   },
   "icu:FunPanelStickers__SubNavCategoryLabel--Recents": {
     "messageformat": "अलीकडील वापरलेले"
+  },
+  "icu:FunPanelStickers__SubNavButton--AddStickerPack": {
+    "messageformat": "एक स्टिकर पॅक जोडा"
   },
   "icu:FunPanelStickers__SectionTitle--SearchResults": {
     "messageformat": "शोध परिणाम"
@@ -3518,9 +3644,6 @@
   "icu:muteExpirationLabel": {
     "messageformat": "{duration} पर्यंत मूक केले"
   },
-  "icu:EmojiButton__label": {
-    "messageformat": "ईमोजी"
-  },
   "icu:ErrorModal--title": {
     "messageformat": "काहीतरी चुकीचे झाले!"
   },
@@ -4283,6 +4406,18 @@
   "icu:CompositionArea--attach-file": {
     "messageformat": "फाईल संलग्न करा"
   },
+  "icu:CompositionArea__AttachMenu__PhotosAndVideos": {
+    "messageformat": "फोटोस आणि व्हिडिओस"
+  },
+  "icu:CompositionArea__AttachMenu__File": {
+    "messageformat": "फाईल"
+  },
+  "icu:CompositionArea__AttachMenu__Poll": {
+    "messageformat": "पोल"
+  },
+  "icu:CompositionArea--attach-plus": {
+    "messageformat": "अटॅचमेंट समाविष्ट करा किंवा पोल तयार करा"
+  },
   "icu:CompositionArea--sms-only__title": {
     "messageformat": "हा व्यक्ती Signal वापरत नाही"
   },
@@ -4433,8 +4568,8 @@
   "icu:ConversationDetailsActions--block-group-modal-confirm": {
     "messageformat": "अवरोधित करा"
   },
-  "icu:ConversationDetailsActions--unblock-group-modal-content": {
-    "messageformat": "आपले संपर्क आपणाला या गटात जोडण्यास सक्षम असतील."
+  "icu:ConversationDetailsActions--unblock-group-modal-body": {
+    "messageformat": "तुमचे संपर्क तुम्हाला या गटात समाविष्ट करू शकतील."
   },
   "icu:ConversationDetailsActions--unblock-group-modal-confirm": {
     "messageformat": "अनवरोधित करा"
@@ -4442,11 +4577,8 @@
   "icu:ConversationDetailsHeader--members": {
     "messageformat": "{number, plural, one {{number,number} सदस्य} other {{number,number} सदस्य}}"
   },
-  "icu:ConversationDetailsMediaList--shared-media": {
-    "messageformat": "सामायिक केलेली मिडिया"
-  },
-  "icu:ConversationDetailsMediaList--show-all": {
-    "messageformat": "सर्व पहा"
+  "icu:ConversationDetailsMediaList--title": {
+    "messageformat": "मीडिया, लिंक्स आणि फाईल्स"
   },
   "icu:ConversationDetailsMembershipList--title": {
     "messageformat": "{number, plural, one {{number,number} सदस्य} other {{number,number} सदस्य}}"
@@ -4940,6 +5072,57 @@
   "icu:ConversationDetailsHeader--add-group-description": {
     "messageformat": "ग्रुप वर्णन जोडा(...)"
   },
+  "icu:AudioListItem__subtitle--voice-message": {
+    "messageformat": "व्हॉईस संदेश"
+  },
+  "icu:AudioListItem__subtitle--audio": {
+    "messageformat": "ऑडिओ"
+  },
+  "icu:LinkPreviewItem__alt": {
+    "messageformat": "ब्राऊझरमध्ये लिंक उघडा"
+  },
+  "icu:ListItem__show-message": {
+    "messageformat": "Show message in conversation"
+  },
+  "icu:MediaGallery__tab__audio": {
+    "messageformat": "ऑडिओ"
+  },
+  "icu:MediaGallery__tab__files": {
+    "messageformat": "फाईल"
+  },
+  "icu:MediaGallery__tab__links": {
+    "messageformat": "लिंक्स"
+  },
+  "icu:MediaGallery__EmptyState__title--media": {
+    "messageformat": "कुठलीही मिडिया नाही"
+  },
+  "icu:MediaGallery__EmptyState__description--media": {
+    "messageformat": "आपण जे फोटो, व्हिडिओ आणि GIF पाठवाल किंवा प्राप्त कराल ते येथे दृश्यमान होतील"
+  },
+  "icu:MediaGallery__EmptyState__title--audio": {
+    "messageformat": "ऑडिओ नाही"
+  },
+  "icu:MediaGallery__EmptyState__description--audio": {
+    "messageformat": "आपण जे ध्वनी संदेश आणि ऑडिओ फाईल पाठवाल आणि प्राप्त कराल त्या या ठिकाणी दृश्यमान होतील"
+  },
+  "icu:MediaGallery__EmptyState__title--links": {
+    "messageformat": "एकही लिंक नाही"
+  },
+  "icu:MediaGallery__EmptyState__description--links-2": {
+    "messageformat": "Links that you send and receive will appear here"
+  },
+  "icu:MediaGallery__EmptyState__description--documents": {
+    "messageformat": "तुम्ही पाठवलेल्या आणि तुम्हाला मिळालेल्या लिंक्स येथे दिसतील"
+  },
+  "icu:MediaGallery__EmptyState__title--documents": {
+    "messageformat": "कोणत्याही फाइल्स नाहीत"
+  },
+  "icu:MediaGallery__EmptyState__description--documents-2": {
+    "messageformat": "Files that you send and receive will appear here"
+  },
+  "icu:MediaGallery__EmptyState__description--links": {
+    "messageformat": "तुम्ही पाठवलेल्या आणि तुम्हाला मिळालेल्या फाईल्स येथे दिसतील"
+  },
   "icu:MediaQualitySelector--button": {
     "messageformat": "मिडिया दर्जा निवडा"
   },
@@ -5279,11 +5462,332 @@
   "icu:Preferences--notification-content": {
     "messageformat": "सूचना आशय"
   },
+  "icu:PlaintextExport--PreferencesRow--Header": {
+    "messageformat": "Export chat history"
+  },
+  "icu:PlaintextExport--PreferencesRow--Description": {
+    "messageformat": "Export a machine-readable JSON copy of all your chats. Disappearing messages will not be exported."
+  },
+  "icu:PlaintextExport--ActionButton": {
+    "messageformat": "Export"
+  },
+  "icu:PlaintextExport--Confirmation--Header": {
+    "messageformat": "Export chat history?"
+  },
+  "icu:PlaintextExport--Confirmation--Description": {
+    "messageformat": "<bold>BE CAREFUL!</bold> Do NOT share this file with anyone. Your chat history will be saved to your computer and other apps can access it depending on your computer’s permissions."
+  },
+  "icu:PlaintextExport--Confirmation--IncludeMedia": {
+    "messageformat": "Include media <secondary>(larger file size)</secondary>"
+  },
+  "icu:PlaintextExport--Confirmation--ContinueButton": {
+    "messageformat": "Continue"
+  },
+  "icu:PlaintextExport--Confirmation--WaitingLabel": {
+    "messageformat": "Waiting for input"
+  },
+  "icu:PlaintextExport--OSPrompt--Mac": {
+    "messageformat": "export your chat history"
+  },
+  "icu:PlaintextExport--OSPrompt--Windows": {
+    "messageformat": "Verify your identity to export your chat history."
+  },
+  "icu:PlaintextExport--OSPrompt--description--Linux": {
+    "messageformat": "Export"
+  },
+  "icu:PlaintextExport--OSPrompt--message--Linux": {
+    "messageformat": "Authentication is required to export your chat history."
+  },
+  "icu:PlaintextExport--ProgressDialog--Header": {
+    "messageformat": "Exporting chat history"
+  },
+  "icu:PlaintextExport--ProgressDialog--Progress": {
+    "messageformat": "Exporting {currentBytes} of {totalBytes} ({percentage,number,percent})..."
+  },
+  "icu:PlaintextExport--ProgressDialog--TimeWarning": {
+    "messageformat": "This may take a few minutes"
+  },
+  "icu:PlaintextExport--CompleteDialog--Header": {
+    "messageformat": "Export complete"
+  },
+  "icu:PlaintextExport--CompleteDialog--Description": {
+    "messageformat": "<bold>BE CAREFUL</bold> where you store your chat export file and do not share it with anyone. Other apps on your computer can access it depending on your computer’s permissions. "
+  },
+  "icu:PlaintextExport--CompleteDialog--ShowFiles--Mac": {
+    "messageformat": "Show in Finder"
+  },
+  "icu:PlaintextExport--CompleteDialog--ShowFiles--Linux": {
+    "messageformat": "Show in folder"
+  },
+  "icu:PlaintextExport--CompleteDialog--ShowFiles--Windows": {
+    "messageformat": "Show in folder"
+  },
+  "icu:PlaintextExport--Error--General--Title": {
+    "messageformat": "Couldn’t export chat history"
+  },
+  "icu:PlaintextExport--Error--General--Description": {
+    "messageformat": "An error occurred and your chat history could not be exported."
+  },
+  "icu:PlaintextExport--Error--NotEnoughStorage--Title": {
+    "messageformat": "Not enough storage space"
+  },
+  "icu:PlaintextExport--Error--NotEnoughStorage--Detail": {
+    "messageformat": "Your chat history can’t be exported because your computer doesn’t have enough free storage space. Free up {bytes} of space and then try again."
+  },
+  "icu:PlaintextExport--Error--RanOutOfStorage--Title": {
+    "messageformat": "Couldn’t export chat history"
+  },
+  "icu:PlaintextExport--Error--RanOutOfStorage--Detail": {
+    "messageformat": "Your chat history couldn’t be exported because your computer doesn’t have enough free storage space. Free up {bytes} of space and then try again."
+  },
+  "icu:PlaintextExport--Error--DiskPermssions--Title": {
+    "messageformat": "Can’t export chat history"
+  },
+  "icu:PlaintextExport--Error--DiskPermssions--Detail": {
+    "messageformat": "Your chat history can’t be exported because Signal doesn’t have permission to write files to disk. Try changing your disk's permissions or updating your system settings and then export again."
+  },
+  "icu:NotificationProfile--moon-icon": {
+    "messageformat": "चंद्राचा आयकन"
+  },
+  "icu:NotificationProfile--copy-label": {
+    "messageformat": "{profileName}ची प्रत"
+  },
+  "icu:NotificationProfile--am": {
+    "messageformat": "AM"
+  },
+  "icu:NotificationProfile--pm": {
+    "messageformat": "PM"
+  },
+  "icu:NotificationProfile--time-separator": {
+    "messageformat": ":"
+  },
+  "icu:NotificationProfileMenuItem": {
+    "messageformat": "सूचना प्रोफाइल"
+  },
+  "icu:NotificationProfileMenu--header": {
+    "messageformat": "अधिसूचना प्रोफाइल"
+  },
+  "icu:NotificationProfileMenu--on": {
+    "messageformat": "चालू"
+  },
+  "icu:NotificationProfileMenu--on-with-end": {
+    "messageformat": "{endTime} पर्यंत चालू राहील"
+  },
+  "icu:NotificationProfileMenu--for-one-hour": {
+    "messageformat": "एका तासासाठी"
+  },
+  "icu:NotificationProfileMenu--until-time": {
+    "messageformat": "{time} पर्यंत"
+  },
+  "icu:NotificationProfileMenu--settings": {
+    "messageformat": "सेटिंग"
+  },
+  "icu:NotificationProfilesToast--enabled": {
+    "messageformat": "“{name}” चालू"
+  },
+  "icu:NotificationProfilesToast--disabled": {
+    "messageformat": "“{name}” बंद"
+  },
+  "icu:NotificationProfilesToast--enabled--label": {
+    "messageformat": "अधिसूचना प्रोफाईल आता सक्रिय केली आहे"
+  },
+  "icu:NotificationProfilesToast--disabled--label": {
+    "messageformat": "अधिसूचना प्रोफाईल आता निष्क्रिय केली आहे"
+  },
+  "icu:NotificationProfiles--setting": {
+    "messageformat": "सूचना प्रोफाइल"
+  },
+  "icu:NotificationProfiles--setup": {
+    "messageformat": "सेट अप"
+  },
+  "icu:NotificationProfiles--title": {
+    "messageformat": "सूचना प्रोफाइल"
+  },
+  "icu:NotificationProfiles--setup-description": {
+    "messageformat": "फक्त तुम्ही निवडलेल्या लोकांकडून आणि गटांकडून अधिसूचना मिळवण्यासाठी एक प्रोफाईल तयार करा"
+  },
+  "icu:NotificationProfiles--setup-continue": {
+    "messageformat": "सुरू ठेवा"
+  },
+  "icu:NotificationProfiles--manage-description": {
+    "messageformat": "अधिसूचना प्रोफाईल्स समाविष्ट करा किंवा संपादित करा"
+  },
+  "icu:NotificationProfiles--manage-profiles": {
+    "messageformat": "{profileCount, plural, one {एक प्रोफाईल} other {{profileCount,number} प्रोफाईल्स}}"
+  },
+  "icu:NotificationProfiles--create": {
+    "messageformat": "प्रोफाइल तयार करा"
+  },
+  "icu:NotificationProfiles--name-title": {
+    "messageformat": "आपल्या प्रोफाइलला नाव द्या"
+  },
+  "icu:NotificationProfiles--name-title--editing": {
+    "messageformat": "नाव"
+  },
+  "icu:NotificationProfiles--name-placeholder": {
+    "messageformat": "प्रोफाईल नाव"
+  },
+  "icu:NotificationProfiles--sample-name__work": {
+    "messageformat": "कार्य"
+  },
+  "icu:NotificationProfiles--sample-name__sleep": {
+    "messageformat": "झोप"
+  },
+  "icu:NotificationProfiles--sample-name__driving": {
+    "messageformat": "ड्रायव्हिंग"
+  },
+  "icu:NotificationProfiles--sample-name__downtime": {
+    "messageformat": "डाउनटाइम"
+  },
+  "icu:NotificationProfiles--sample-name__focus": {
+    "messageformat": "एकाग्र"
+  },
+  "icu:NotificationProfiles--allowed-title": {
+    "messageformat": "सूचनांची अनुमती असलेले"
+  },
+  "icu:NotificationProfiles--allowed-description": {
+    "messageformat": "ही प्रोफाईल सुरु असताना तुम्हाला ज्या लोकांच्या आणि गटांच्या अधिसूचना हव्या आहेत त्यांना समाविष्ट करा"
+  },
+  "icu:NotificationProfiles--allowed-add-label": {
+    "messageformat": "लोक किंवा गट जोडा"
+  },
+  "icu:NotificationProfiles--exceptions": {
+    "messageformat": "अपवाद"
+  },
+  "icu:NotificationProfiles--exceptions--allow-all-calls": {
+    "messageformat": "सर्व कॉल्सना परवानगी द्या"
+  },
+  "icu:NotificationProfiles--exceptions--notify-for-mentions": {
+    "messageformat": "सर्व उल्लेखांसाठी सूचित करा"
+  },
+  "icu:NotificationProfiles--schedule-title": {
+    "messageformat": "शेड्यूल जोडा"
+  },
+  "icu:NotificationProfiles--schedule-title--editing": {
+    "messageformat": "शेड्यूल"
+  },
+  "icu:NotificationProfiles--schedule-description": {
+    "messageformat": "तुमची अधिसूचना प्रोफाईल स्वयंचलित करण्यासाठी तुमचे वेळापत्रक सक्रिय करा आणि संपादित करा."
+  },
+  "icu:NotificationProfiles--schedule-enable": {
+    "messageformat": "आपोआप चालू करा"
+  },
+  "icu:NotificationProfiles--schedule": {
+    "messageformat": "शेड्यूल"
+  },
+  "icu:NotificationProfiles--schedule-from": {
+    "messageformat": "याकडून"
+  },
+  "icu:NotificationProfiles--schedule-until": {
+    "messageformat": "या वेळेपर्यंत"
+  },
+  "icu:NotificationProfiles--open-time-picker": {
+    "messageformat": "वेचक उघडण्याची वेळ"
+  },
+  "icu:NotificationProfiles--schedule-sunday": {
+    "messageformat": "रविवार"
+  },
+  "icu:NotificationProfiles--schedule-monday": {
+    "messageformat": "सोमवार"
+  },
+  "icu:NotificationProfiles--schedule-tuesday": {
+    "messageformat": "मंगळवार"
+  },
+  "icu:NotificationProfiles--schedule-wednesday": {
+    "messageformat": "बुधवार"
+  },
+  "icu:NotificationProfiles--schedule-thursday": {
+    "messageformat": "गुरूवार"
+  },
+  "icu:NotificationProfiles--schedule-friday": {
+    "messageformat": "शुक्रवार"
+  },
+  "icu:NotificationProfiles--schedule-saturday": {
+    "messageformat": "शनिवार"
+  },
+  "icu:NotificationProfiles--done-title": {
+    "messageformat": "प्रोफाइल तयार केले"
+  },
+  "icu:NotificationProfiles--done-description": {
+    "messageformat": "जर तुम्ही वेळापत्रक जोडले असेल, तर तुमची प्रोफाईल आपोआप चालू आणि बंद होईल. तुम्ही चॅट यादीच्या वर असणाऱ्या ··· आयकन वर क्लिक करून ती स्वतः चालू किंवा बंद करू शकता."
+  },
+  "icu:NotificationProfiles--schedule-sunday-short": {
+    "messageformat": "रवि"
+  },
+  "icu:NotificationProfiles--schedule-monday-short": {
+    "messageformat": "साेमवार"
+  },
+  "icu:NotificationProfiles--schedule-tuesday-short": {
+    "messageformat": "मंगळवार"
+  },
+  "icu:NotificationProfiles--schedule-wednesday-short": {
+    "messageformat": "बुध"
+  },
+  "icu:NotificationProfiles--schedule-thursday-short": {
+    "messageformat": "गुरू"
+  },
+  "icu:NotificationProfiles--schedule-friday-short": {
+    "messageformat": "शुक्र"
+  },
+  "icu:NotificationProfiles--schedule-saturday-short": {
+    "messageformat": "शनि"
+  },
+  "icu:NotificationProfiles--schedule-weekdays": {
+    "messageformat": "आठवड्यातील दिवस"
+  },
+  "icu:NotificationProfiles--schedule-weekends": {
+    "messageformat": "वीकेंड्स"
+  },
+  "icu:NotificationProfiles--schedule-daily": {
+    "messageformat": "दैनिक"
+  },
+  "icu:NotificationProfiles--schedule-separator": {
+    "messageformat": ", "
+  },
+  "icu:NotificationProfiles--list--header": {
+    "messageformat": "प्रोफाइल्स"
+  },
+  "icu:NotificationProfiles--list--sync": {
+    "messageformat": "सर्व डिव्हाईसेस वर सिंक करा"
+  },
+  "icu:NotificationProfiles--list--sync--description": {
+    "messageformat": "तुमच्या प्रोफाईल्स तुमच्या डिव्हाईसेस वर सिंक केल्या जातील. एखादी प्रोफाईल एका डिव्हाईस साठी चालू केली तर ती इतरांवरही चालू होईल."
+  },
+  "icu:NotificationProfiles--delete": {
+    "messageformat": "प्रोफाइल हटवा"
+  },
+  "icu:NotificationProfiles--delete-confirmation": {
+    "messageformat": "ही अधिसूचना प्रोफाईल कायमची हटवायची का?"
+  },
+  "icu:NotificationProfiles--delete-button": {
+    "messageformat": "हटवा"
+  },
+  "icu:NotificationProfiles--edit--is-active": {
+    "messageformat": "चालू"
+  },
+  "icu:NotificationProfiles--edit--is-not-active": {
+    "messageformat": "बंद"
+  },
+  "icu:NotificationProfiles--edit--edit-name-label": {
+    "messageformat": "या प्रोफाईलचे नाव संपादित करा"
+  },
+  "icu:NotificationProfiles--edit--allowed": {
+    "messageformat": "सूचनांची अनुमती असलेले"
+  },
+  "icu:NotificationProfiles--edit--schedule-timing": {
+    "messageformat": "{startTime} पासून {endTime}"
+  },
+  "icu:NotificationProfiles--edit--schedule-enabled": {
+    "messageformat": "चालू"
+  },
+  "icu:NotificationProfiles--edit--schedule-disabled": {
+    "messageformat": "बंद"
+  },
   "icu:Preferences--blocked": {
     "messageformat": "अवरोधित केले"
   },
   "icu:Preferences--signal-backups": {
-    "messageformat": "Signal बॅकअप"
+    "messageformat": "Signal सुरक्षित बॅकअप्स"
   },
   "icu:Preferences--signal-backups-off-description": {
     "messageformat": "ऑटोमॅटिक बॅकअप्स, Signal च्या सुरक्षित, एण्ड-टू-एण्ड कूटबद्ध केलेल्या संग्रहण सेवेसह. तुमच्या फोनवर सुरुवात करा. <learnMoreLink>अधिक जाणून घ्या</learnMoreLink>."
@@ -5298,7 +5802,10 @@
     "messageformat": "मजकूर + सर्व मिडीया बॅकअप"
   },
   "icu:Preferences--backup-plan-not-found__description": {
-    "messageformat": "तुमचे सदस्यत्व सापडले नाही. Signal बॅकअप्स वापरत राहण्यासाठी रीन्यू करा."
+    "messageformat": "तुमचे सदस्यत्व सापडले नाही. तुमचे बॅकअप तपशील पाहण्यासाठी तुमचा फोन तपासा."
+  },
+  "icu:Preferences--backup-subscription-monthly-cost": {
+    "messageformat": "{cost}/महिना"
   },
   "icu:Preferences--backup-messages-plan__description": {
     "messageformat": "{mediaDayCount, plural, one {मजकूर + {mediaDayCount,number} दिवसाचा मिडीया बॅकअप} other {मजकूर + {mediaDayCount,number} दिवसांचा मिडीया बॅकअप}}"
@@ -5316,13 +5823,13 @@
     "messageformat": "सदस्यत्व रद्द केले"
   },
   "icu:Preferences--backup-media-plan__note": {
-    "messageformat": "तुम्ही तुमच्या फोनवरून तुमचे Signal बॅकअप्स सदस्यत्व व्यवस्थापित करू शकता किंवा रद्द करू शकता."
+    "messageformat": "तुम्ही तुमच्या फोनवरून तुमचे Signal सुरक्षित बॅकअप्स सदस्यत्व व्यवस्थापित करू शकता किंवा रद्द करू शकता."
   },
   "icu:Preferences--backup-messages-plan__note": {
-    "messageformat": "तुम्ही तुमच्या फोनवरून तुमचे Signal बॅकअप्स व्यवस्थापित करू शकता किंवा अद्ययावत करू शकता."
+    "messageformat": "तुम्ही तुमच्या फोनवरून तुमचे Signal सुरक्षित बॅकअप्स व्यवस्थापित करू शकता किंवा अपग्रेड करू शकता."
   },
   "icu:Preferences--backup-plan__not-found__note": {
-    "messageformat": "तुम्ही तुमच्या फोनवरून तुमचे Signal बॅकअप्स सदस्यत्व व्यवस्थापित करू शकता किंवा रीन्यू करू शकता."
+    "messageformat": "तुम्ही तुमच्या फोनवरून तुमचे Signal सुरक्षित बॅकअप्स सदस्यत्व व्यवस्थापित करू शकता किंवा रीन्यू करू शकता."
   },
   "icu:Preferences--backup-created-at__label": {
     "messageformat": "शेवटचा बॅकअप"
@@ -5353,6 +5860,18 @@
   },
   "icu:Preferences--local-backups-view-backup-key-done": {
     "messageformat": "ठीक"
+  },
+  "icu:Preferences--local-backups--view-backup-key--os-prompt--mac": {
+    "messageformat": "show your backup key"
+  },
+  "icu:Preferences--local-backups--view-backup-key--os-prompt--windows": {
+    "messageformat": "Verify your identity to view your backup key."
+  },
+  "icu:Preferences--local-backups--view-backup-key--os-prompt-description--linux": {
+    "messageformat": "View backup key"
+  },
+  "icu:Preferences--local-backups--view-backup-key--os-prompt-message--linux": {
+    "messageformat": "Authentication is required to view your backup key."
   },
   "icu:Preferences--local-backups-backup-key-text-box": {
     "messageformat": "बॅकअप की मजकुराचा रकाना"
@@ -5395,6 +5914,18 @@
   },
   "icu:Preferences__local-backups-copied-key": {
     "messageformat": "बॅकअप की कॉपी केली"
+  },
+  "icu:Preferences__local-backups--enable--os-prompt--mac": {
+    "messageformat": "enable backups"
+  },
+  "icu:Preferences__local-backups--enable--os-prompt--windows": {
+    "messageformat": "Verify your identity to enable backups."
+  },
+  "icu:Preferences__local-backups--enable--os-prompt-description--linux": {
+    "messageformat": "Enable backups"
+  },
+  "icu:Preferences__local-backups--enable--os-prompt-message--linux": {
+    "messageformat": "Authentication is required to enable backups."
   },
   "icu:Preferences__view-key": {
     "messageformat": "की पहा"
@@ -6396,6 +6927,9 @@
   "icu:EditHistoryMessagesModal__title": {
     "messageformat": "संपादनाचा इतिहास"
   },
+  "icu:EditHistoryMessagesModal__Message__ContextMenu__CopyTimestamp": {
+    "messageformat": "टाईमस्टँप कॉपी करा"
+  },
   "icu:ResendMessageEdit__body": {
     "messageformat": "हे संपादन पाठवले जाऊ शकत नाही. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा"
   },
@@ -6672,11 +7206,14 @@
   "icu:PreferencesDonations__privacy-modal-content": {
     "messageformat": "<paragraph>तुम्ही जेव्हा देणगी देता तेव्हा Signal तुमची कोणतीही वैयक्तिक माहिती संग्रहित किंवा संकलित करत नाही.</paragraph> <paragraph>तुमच्या देणग्या प्राप्त करण्यासाठी आम्ही आमचा पेमेंट्स प्रोसेसर म्हणून स्ट्राईपचा वापर करतो. तुम्ही त्यांना प्रदान करत असलेली कोणतीही माहिती आम्ही मिळवत नाही, किंवा ती संग्रहित किंवा जतन करत नाही.</paragraph> <paragraph>Signal तुमच्या देणग्या तुमच्या Signal खात्याशी जोडत नाही आणि जोडू शकत नाही.</paragraph><paragraph>तुमच्या सपोर्टबद्दल धन्यवाद!</paragraph>"
   },
+  "icu:PreferencesDonations__privacy-modal-ok": {
+    "messageformat": "ठीक"
+  },
   "icu:PreferencesDonations__receipts": {
     "messageformat": "पावत्या"
   },
   "icu:PreferencesDonations__receipt-details-button-aria": {
-    "messageformat": "View receipt details"
+    "messageformat": "पावतीचे तपशील पहा"
   },
   "icu:PreferencesDonations__faqs": {
     "messageformat": "देणगीदारांचे FAQs"
@@ -6686,9 +7223,6 @@
   },
   "icu:PreferencesDonations--receiptList__empty-title": {
     "messageformat": "पावत्या नाहीत"
-  },
-  "icu:PreferencesDonations__ReceiptModal--title": {
-    "messageformat": "तपशील"
   },
   "icu:PreferencesDonations__ReceiptModal--download": {
     "messageformat": "पावती डाऊनलोड करा"
@@ -6723,6 +7257,9 @@
   "icu:DonateFlow__card-form-expiration-date": {
     "messageformat": "कालबाह्यता दिनांक"
   },
+  "icu:DonateFlow__card-form-expiration-date-placeholder": {
+    "messageformat": "मम/वव"
+  },
   "icu:DonateFlow__card-form-title-donate-with-amount": {
     "messageformat": "Signal {formattedCurrencyAmount} ला देणगी द्या"
   },
@@ -6744,8 +7281,23 @@
   "icu:DonateFlow__one-time-donation-boost-badge-info": {
     "messageformat": "Signal बूस्ट बॅज 30 दिवसांकरिता मिळवा"
   },
+  "icu:DonateFlow__custom-amount-below-minimum-error": {
+    "messageformat": "देणगीची किमान रक्कम अशी आहे{formattedCurrencyAmount}"
+  },
   "icu:DonateFlow__custom-amount-below-minimum-tooltip": {
     "messageformat": "आपण देणगी देऊ शकता अशी किमान रक्कम {formattedCurrencyAmount} आहे"
+  },
+  "icu:DonateFlow__custom-amount-above-maximum-error": {
+    "messageformat": "देणगीची कमाल रक्कम अशी आहे {formattedCurrencyAmount}"
+  },
+  "icu:DonateFlow__discard-dialog-body": {
+    "messageformat": "हे पान सोडल्याने तुमची क्रेडिट कार्डची माहिती हटवली जाईल. तुम्हाला पुढे जायचे आहे का?"
+  },
+  "icu:DonateFlow__discard-dialog-remove-info": {
+    "messageformat": "माहिती हटवून टाका"
+  },
+  "icu:DonateFlow__continue": {
+    "messageformat": "सुरू ठेवा"
   },
   "icu:DonationReceipt__title": {
     "messageformat": "देणगीची पावती"
@@ -6789,8 +7341,11 @@
   "icu:Donations__Toast__ConfirmationNeeded": {
     "messageformat": "तुमची एक देणगीची प्रक्रिया पूर्ण व्हायची बाकी आहे, जिला निश्चिती देणे आवश्यक आहे."
   },
-  "icu:Donations__Toast__DonationCompletedAndBadgeApplicationFailed": {
-    "messageformat": "Donation succeeded, but we could not update your badge settings"
+  "icu:Donations__BadgeApplicationFailed__Title": {
+    "messageformat": "देणगी यशस्वी ठरली, पण आम्हाला तुमच्या बॅज सेटिंग्ज अद्ययावत करता आल्या नाहीत"
+  },
+  "icu:Donations__BadgeApplicationFailed__Description": {
+    "messageformat": "तुमच्या मोबाईल डिव्हाईसवरील तुमच्या बॅज सेटिंग्ज अद्ययावत करण्यासाठी, सेटिंग्ज → Signalला देणगी द्या → बॅजेसमध्ये जा."
   },
   "icu:Donations__DonationInterrupted": {
     "messageformat": "देणगी प्रक्रियेत व्यत्यय आला"
@@ -6865,7 +7420,7 @@
     "messageformat": "प्रोफाइलवर दाखवा"
   },
   "icu:Donations__badge-modal--help-text": {
-    "messageformat": "You can adjust this on your mobile device under Settings → Donate to Signal → Badges"
+    "messageformat": "तुम्ही तुमच्या मोबाईल डिव्हाईसवर सेटिंग्ज → Signalला देणगी द्या → बॅज मध्ये जाऊन त्या बदलू शकता"
   },
   "icu:WhatsNew__bugfixes": {
     "messageformat": "Signal निर्विघ्नपणे चालत ठेवण्यासाठी या आवृत्तीत अनेक लहान समन्वय आणि त्रुटी दुरुस्त्या समाविष्ट आहेत",
@@ -6895,16 +7450,22 @@
     "messageformat": "लहान ट्विक्स, दोष निवारण, आणि कामगिरी सुधारणा. Signal वापरल्याबद्दल आभारी आहोत!",
     "ignoreUnused": true
   },
-  "icu:WhatsNew__v7.64--0": {
-    "messageformat": "आम्ही मल्टिटास्किंग करताना संदेश वाचण्याचा / न वाचण्याचा अनुभव सुधारला आहे, आणि चपखल बसणारी इमोजी प्रतिक्रिया शोधताना तुम्ही स्पेस बार दाबल्यावर कधीकधी मोठा इमेज दर्शक चुकून उघडणारा बग दुरुस्त केला. तुम्ही इमेजवर क्लिक केल्यास किंवा तुम्ही पटकन टाईप केल्यास तुम्ही अजूनही झूम करू शकता."
+  "icu:WhatsNew__7.78-1": {
+    "messageformat": "हे अद्यतन एखाद्या थ्रेडमध्ये नवीन संदेश येतात तेव्हा वारंवार होणाऱ्या टाईमस्टॅम्पच्या घोषणा गाळून स्क्रीन रीडर वापरकर्त्यांचा अनुभव सुधारते."
   },
-  "icu:WhatsNew__v7.65--0": {
-    "messageformat": "योग्य इमोजी शोधत बसायला अनंत काळ लागू शकतो, पण आता आम्ही एक बग दुरुस्त केला, ज्यामुळे इमोजी शोध रकान्यामध्ये असताना एस्केप की दाबल्यावर एक त्रुटी उद्भवत होती."
+  "icu:WhatsNew__7.78-2": {
+    "messageformat": "आम्ही Windows वर अधिसूचना अडवू शकणारा एक बग सुद्धा दुरुस्त केला आहे."
   },
-  "icu:WhatsNew__v7.66--0": {
-    "messageformat": "ह्या अद्यतनामध्ये काही छोटे बग्स दुरुस्त केले आहेत, यांमध्ये काही प्रकरणांत इमोजी प्रतिक्रिया नीट एकत्र केल्या जात नव्हत्या तो बगसुद्धा दुरुस्त झाला आहे."
+  "icu:WhatsNew__7.79-1": {
+    "messageformat": "आम्ही ॲपमध्ये सर्व ठिकाणचे स्क्रोलबारचे स्वरूप आणि स्टाईल अद्ययावत केली आहे. सहसा तुम्ही चटकन स्क्रोल केले की काहीतरी राहून जाते, पण इथे हा बदल पाहण्यासाठी स्क्रोल करणे हा एकच उपाय आहे."
   },
-  "icu:WhatsNew__v7.67--0": {
-    "messageformat": "आम्ही एक बग दुरुस्त केला ज्यामुळे काही वापरकर्ताचे देणगी बॅज नीट दिसत नव्हते. Signal एक 501c3 ना-नफा संस्था आहे, आणि आपल्या सपोर्टसाठी आम्ही कृतज्ञ आहोत!"
+  "icu:WhatsNew__7.79-2": {
+    "messageformat": "कॉपी/पेस्टमधील सुधारणांमुळे पूर्ण मजकूर निवडून जुने फॉरमॅटिंग न आणता आधीचा मजकूर बदलणे सोपे होते. धन्यवाद, <brianHarder></brianHarder>!"
+  },
+  "icu:WhatsNew__7.80-1": {
+    "messageformat": "Signal पोल्स आले आहेत! तुमचे आणि तुमच्या मित्रांचे पोल जुळतात, की एकमेकांपासून पार दुसऱ्या टोकाला जातात? तुमच्या ग्रूपमधील चॅटचा विचार नेमका काय आहे हे जाणून घेण्याचा पोल हा सोपा मार्ग आहे. जेवायचे वेगवेगळे पर्याय, सुट्यांची ठिकाणे, उद्याच्या रोड ट्रिपसाठी संगीत प्राधान्ये, किंवा इतर महत्त्वाच्या निवडी करण्यासाठी पोल तयार करा. ग्रूपमधील प्रत्येक जण मत देऊ शकतो, एकमेकांचे प्रतिसाद पाहू शकतो, आणि एकापेक्षा अनेक मते देता येतील का हे तुम्ही ठरवू शकता."
+  },
+  "icu:WhatsNew__7.81-1": {
+    "messageformat": "मीडिया गॅलरीमध्ये आता ऑडिओ संदेशासाठी आणि लिंक पूर्वावलोकनासाठी दोन नवीन टॅब दिसतात. जर एखादी लिंक ग्रुप चॅटमध्ये पडली तर ती आवाज करते का?"
   }
 }
