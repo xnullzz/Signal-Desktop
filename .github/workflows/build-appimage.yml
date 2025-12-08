@@ -25,12 +25,18 @@ jobs:
       - name: Install base tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y jq libarchive-tools rpm fakeroot
+          sudo apt-get install -y \
+            jq \
+            libarchive-tools \
+            rpm \
+            fakeroot \
+            git-lfs
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
+          cache: "pnpm"
 
       - name: Enable Corepack and pnpm
         run: |
@@ -41,7 +47,7 @@ jobs:
 
       - name: Get pnpm store path
         id: pnpm-store
-        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+        run: echo "STORE_PATH=$(pnpm store path)" >> "$GITHUB_OUTPUT"
 
       - name: Cache pnpm store
         uses: actions/cache@v4
@@ -51,17 +57,22 @@ jobs:
           restore-keys: |
             pnpm-${{ runner.os }}-
 
-      - name: Install deps
+      - name: Install root deps
         run: |
           git lfs install
           pnpm install --frozen-lockfile
 
-      - name: Build sticker-creator
+      - name: Install sticker-creator deps
+        if: ${{ hashFiles('sticker-creator/package.json') != '' }}
+        working-directory: sticker-creator
         run: |
-          if [ -f sticker-creator/package.json ]; then
-            pnpm --prefix ./sticker-creator/ install --frozen-lockfile
-            pnpm --prefix ./sticker-creator/ run build
-          fi
+          pnpm install --frozen-lockfile
+
+      - name: Build sticker-creator
+        if: ${{ hashFiles('sticker-creator/package.json') != '' }}
+        working-directory: sticker-creator
+        run: |
+          pnpm run build
 
       - name: Generate sources
         run: pnpm run generate
@@ -72,7 +83,7 @@ jobs:
             --linux AppImage \
             --config.linux.target=AppImage \
             --publish=never \
-            --config.extraMetadata.environment=$SIGNAL_ENV \
+            --config.extraMetadata.environment="$SIGNAL_ENV" \
             --config.directories.output=release
 
       - name: List artifacts
